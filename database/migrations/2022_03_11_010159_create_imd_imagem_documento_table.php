@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogradourosTable extends Migration
+class CreateImdImagemDocumentoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateLogradourosTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_logradouro', function (Blueprint $table) {
+        Schema::create('imd_imagem_documento', function (Blueprint $table) {
             $table->id();
-            $table->string('log_nom_logradouro', 1000);
-            $table->string('log_num_cep', 12);
-            $table->foreignId('log_id_bai')->constrained('bai_bairro')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('imd_nom_arquivo', 2000);
+            $table->string('imd_arquivo');
+            $table->foreignId('imd_id_doc')->constrained('doc_documento')->onDelete('cascade')->onUpdate('cascade');
             $table->softDeletes();
         });
     }
@@ -29,6 +29,6 @@ class CreateLogradourosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_logradouro');
+        Schema::dropIfExists('imd_imagem_documento');
     }
 }

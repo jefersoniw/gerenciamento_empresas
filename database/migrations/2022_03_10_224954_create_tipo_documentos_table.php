@@ -13,9 +13,10 @@ class CreateTipoDocumentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_documentos', function (Blueprint $table) {
+        Schema::create('tdo_tipo_documento', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('tdo_nom_tipo_documento', 200);
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateTipoDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_documentos');
+        Schema::dropIfExists('tdo_tipo_documento');
     }
 }

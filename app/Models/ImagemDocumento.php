@@ -13,7 +13,7 @@ class ImagemDocumento extends Model
     protected $table = 'imd_imagem_documento';
     public $timestamps = false;
     protected $fillable = [
-        'imd_nome_arquivo',
+        'imd_nom_arquivo',
         'imd_arquivo',
         'imd_id_doc'
     ];

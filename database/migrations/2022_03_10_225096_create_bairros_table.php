@@ -13,9 +13,10 @@ class CreateBairrosTable extends Migration
      */
     public function up()
     {
-        Schema::create('bairros', function (Blueprint $table) {
+        Schema::create('bai_bairro', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('bai_nom_bairro', 200);
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateBairrosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bairros');
+        Schema::dropIfExists('bai_bairro');
     }
 }
