@@ -18,4 +18,14 @@ class Empresa extends Model
         'emp_dtf_atividade',
         'emp_especial'
     ];
+
+    public function documento()
+    {
+        return $this->hasMany(Documento::class, 'doc_id_emp', 'id');
+    }
+
+    public function endereco()
+    {
+        return $this->hasMany(Endereco::class, 'end_id_emp', 'id');
+    }
 }

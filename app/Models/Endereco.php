@@ -21,4 +21,14 @@ class Endereco extends Model
         'end_id_log',
         'end_id_emp'
     ];
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'end_id_emp', 'id');
+    }
+
+    public function logradouro()
+    {
+        return $this->belongsTo(Logradouro::class, 'end_id_log', 'id');
+    }
 }

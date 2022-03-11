@@ -22,4 +22,14 @@ class Documento extends Model
     {
         return $this->hasMany(ImagemDocumento::class, 'imd_id_doc', 'id');
     }
+
+    public function tipo_documento()
+    {
+        return $this->belongsTo(TipoDocumento::class, 'doc_id_tdo', 'id');
+    }
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'doc_id_emp', 'id');
+    }
 }

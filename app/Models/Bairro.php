@@ -16,4 +16,9 @@ class Bairro extends Model
     protected $fillable = [
         'bai_nom_bairro'
     ];
+
+    public function logradouro()
+    {
+        return $this->hasMany(Logradouro::class, 'log_id_bai', 'id');
+    }
 }

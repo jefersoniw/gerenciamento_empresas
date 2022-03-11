@@ -18,4 +18,14 @@ class Logradouro extends Model
         'log_num_cep',
         'log_id_bai'
     ];
+
+    public function endereco()
+    {
+        return $this->hasMany(Endereco::class, 'end_id_log', 'id');
+    }
+
+    public function bairro()
+    {
+        return $this->belongsTo(Bairro::class, 'log_id_bai', 'id');
+    }
 }

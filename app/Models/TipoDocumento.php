@@ -16,4 +16,9 @@ class TipoDocumento extends Model
     protected $fillable = [
         'tdo_nom_tipo_documento'
     ];
+
+    public function documento()
+    {
+        return $this->hasMany(Documento::class, 'doc_id_tdo', 'id');
+    }
 }
