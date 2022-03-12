@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\EnderecoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,7 @@ route::middleware('auth')->group(function () {
     route::get('/addespecial/empresa/{id}', [EmpresaController::class, 'addEspecial'])->name('empresas.addespecial');
     route::get('/removeespecial/empresa/{id}', [EmpresaController::class, 'removeEspecial'])->name('empresas.removeespecial');
     route::get('/restore/{id}/empresa', [EmpresaController::class, 'restore'])->name('empresas.restore');
+
+    route::get('/enderecos/{end_id_emp}/index', [EnderecoController::class, 'index'])->name('enderecos.index');
+    route::get('/enderecos/{end_id_emp}/create', [EnderecoController::class, 'create'])->name('enderecos.create');
 });

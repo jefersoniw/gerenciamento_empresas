@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documento;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,7 @@ class EmpresaController extends Controller
             $empresa->emp_especial = 0;
         }
         $empresa->save();
-        return redirect()->route('empresas.index', $empresa->id)->with('message', 'A Empresa foi cadastrada com sucesso!');
+        return redirect()->route('endereco.create', $empresa->id)->with('message', 'A Empresa foi cadastrada com sucesso!');
     }
 
     /**
@@ -57,7 +58,8 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        //
+        $empresa = Empresa::find($id);
+        return view('empresa.show', ['empresa' => $empresa]);
     }
 
     /**
@@ -81,7 +83,13 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $empresa = Empresa::find($id);
+        $empresa->emp_nom_empresa = $request->emp_nom_empresa;
+        $empresa->emp_dti_atividade = $request->emp_dti_atividade;
+        $empresa->emp_dtf_atividade = $request->emp_dtf_atividade;
+        $empresa->emp_especial = $request->emp_especial;
+        $empresa->save();
+        return redirect()->route('empresas.show', $empresa->id)->with('message', 'A Empresa foi editada com sucesso!');
     }
 
     /**
@@ -120,12 +128,18 @@ class EmpresaController extends Controller
 
     public function addEspecial($id)
     {
-        //
+        $empresa = Empresa::find($id);
+        $empresa->emp_especial = 1;
+        $empresa->save();
+        return redirect()->route('empresas.index')->with('message', 'A empresa ' . $empresa->emp_nom_empresa . ' se tornou ESPECIAL!');
     }
 
     public function removeEspecial($id)
     {
-        //
+        $empresa = Empresa::find($id);
+        $empresa->emp_especial = 0;
+        $empresa->save();
+        return redirect()->route('empresas.index')->with('message', 'A empresa ' . $empresa->emp_nom_empresa . ' não é mais ESPECIAL!');
     }
 
     public function restore($id)
