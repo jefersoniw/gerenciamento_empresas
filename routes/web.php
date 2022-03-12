@@ -4,6 +4,7 @@ use App\Http\Controllers\BairroController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\LogradouroController;
+use App\Http\Controllers\TipoDocumentoController;
 use App\Models\Logradouro;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,10 @@ route::middleware('auth')->group(function () {
     //BAIRRO
     route::resource('/bairros', BairroController::class);
     route::get('/bairros/{id}/delete', [BairroController::class, 'destroy'])->name('bairros.delete');
+
+    //TIPO DE DOCUMENTOS
+    route::resource('/tiposdocumentos', TipoDocumentoController::class);
+    route::get('/tiposdocumentos/{id}/delete', [TipoDocumentoController::class, 'destroy'])->name('tiposdocumentos.delete');
 });
 
 route::group(['prefix' => 'enderecos', 'middleware' => 'auth'], function () {

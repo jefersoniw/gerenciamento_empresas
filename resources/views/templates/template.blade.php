@@ -50,7 +50,7 @@
         </form>
     </nav>
     [ <a href="{{ route('logradouros.index') }}">Logradouros</a> | <a
-        href="{{ route('bairros.index') }}">Bairros</a> | <a href="">Tipos de
+        href="{{ route('bairros.index') }}">Bairros</a> | <a href="{{ route('tiposdocumentos.index') }}">Tipos de
         Documentos</a> ]
     <br>
     @yield('content')
