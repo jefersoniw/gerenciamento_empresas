@@ -3,7 +3,7 @@
 @section('title', 'Inicio - Empresas')
 
 @section('content')
-    Onde Estou: <a href="{{ route('empresas.index') }}">Empresa </a> > Detalhes da Empresa > <b>Endereços da Empresa</b>
+    Onde Estou: <a href="{{ route('empresas.index') }}">Empresa </a> > Visualizar Empresa > <b>Endereços da Empresa</b>
 
     <h1 class="text-center">[ ENDEREÇOS DA EMPRESA ]</h1>
     <div class="text-center mt-3 mb-4">
@@ -34,7 +34,7 @@
                 <br>
 
                 <div>
-                    <b>Números:</b> {{ $item->end_num_numero }}
+                    <b>Número:</b> {{ $item->end_num_numero }}
                 </div>
                 <br>
 
@@ -73,6 +73,9 @@
             {{-- foreach --}}
         </table>
         <br>
+
+        <hr>
+        <hr>
 
         {{ $enderecos->links() }}
 

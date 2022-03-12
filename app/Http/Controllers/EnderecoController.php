@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bairro;
 use App\Models\Endereco;
+use App\Models\Logradouro;
 use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
@@ -25,7 +27,13 @@ class EnderecoController extends Controller
      */
     public function create($end_id_emp)
     {
-        //
+        $logradouro = Logradouro::all();
+        $bairro = Bairro::all();
+        return view('endereco.create', [
+            'end_id_emp' => $end_id_emp,
+            'logradouro' => $logradouro,
+            'bairro' => $bairro
+        ]);
     }
 
     /**

@@ -35,4 +35,5 @@ route::middleware('auth')->group(function () {
 
     route::get('/enderecos/{end_id_emp}/index', [EnderecoController::class, 'index'])->name('enderecos.index');
     route::get('/enderecos/{end_id_emp}/create', [EnderecoController::class, 'create'])->name('enderecos.create');
+    route::post('/enderecos/store', [EnderecoController::class, 'store'])->name('enderecos.store');
 });

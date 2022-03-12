@@ -3,7 +3,7 @@
 @section('title', 'Inicio - Empresas')
 
 @section('content')
-    Onde Estou: <a href="{{ route('empresas.index') }}">Empresa </a> >
+    Onde Estou: <a href="{{ route('empresas.index') }}">Empresa </a>
 
     <h1 class="text-center">[ EMPRESAS ]</h1>
     <div class="text-center mt-3 mb-4">
