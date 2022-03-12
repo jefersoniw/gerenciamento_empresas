@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Login</h1>
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">[ Login ]</h1>
             <hr>
             <input type="email" name="email" id="email" class="form-control" placeholder="Email Cadastrado" required
                 autofocus="">

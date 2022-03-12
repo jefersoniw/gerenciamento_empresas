@@ -17,7 +17,7 @@
                 </div>
             @endif
 
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Cadastrar Usuário</h1>
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">[ Cadastrar Usuário ]</h1>
             <hr>
             <input type="text" name="name" id="name" class="form-control" placeholder="Digite seu nome" required
                 autofocus="" onkeydown="upperCaseF(this)" value="{{ old('name') }}">

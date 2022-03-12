@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - {{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="icon" href="{{ asset('assets/image/icon_empresa.png') }}">
 
     <link href="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css') }}"
         rel="stylesheet" />
@@ -30,7 +31,7 @@
     <div class="painel" id="painel">
         <center>
             <a href="{{ url('/dashboard') }}">
-                <img src="{{ asset('assets/image/logo.png') }}" alt="some text" width=300 height=25>
+                <img src="{{ asset('assets/image/empresa.png') }}" alt="some text" width=200 height=15>
             </a>
         </center>
     </div><br>
@@ -40,22 +41,16 @@
     <h2 class="text-center">[ Gerenciamento de Empresas ]</h2>
     <br>
 
-    <nav class="navbar navbar-light bg-dark">
-        <a class="navbar-brand">INICIO</a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="{{ route('empresas.index') }}" class="navbar-brand">[ INICIO ]</a>
+        <label class="navbar-brand" for=""><b>Usuário Logado: </b>{{ Auth::user()->name }}</label>
+        <form name="logout" method="post" action="{{ route('logout') }}">
+            @csrf
+            <button class="btn btn-dark" type="submit"><i class="fas fa-sign-in-alt"></i>[ SAIR ]</button>
         </form>
     </nav>
 
     <br>
-    @php
-        date_default_timezone_set('America/bahia');
-    @endphp
-    <b>Usuário Logado: </b>{{ Auth::user()->name }} <br>
-    <b>Data de Hoje: </b>{{ date('d/m/Y') }}
-
-
     @yield('content')
 </body>
 <br>
