@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BairroRequest;
 use App\Models\Bairro;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class BairroController extends Controller
      */
     public function index()
     {
-        //
+        $bairros = Bairro::paginate(30);
+        return view('bairro.index', ['bairros' => $bairros]);
     }
 
     /**
@@ -24,16 +26,7 @@ class BairroController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    public function createFast($end_id_emp)
-    {
-        $bairro = Bairro::all();
-        return view('bairro.createfast', [
-            'end_id_emp' => $end_id_emp,
-            'bairro' => $bairro
-        ]);
+        return view('bairro.create');
     }
 
     /**
@@ -42,26 +35,10 @@ class BairroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BairroRequest $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeFast(Request $request)
-    {
-        $end_id_emp = $request->end_id_emp;
-
-        $bairro = new Bairro();
-        $bairro->bai_nom_bairro = $request->bai_nom_bairro;
-        $bairro->save();
-
-        return redirect()->route('bairros.createfast', $end_id_emp)->with('message', 'Bairro cadastrado com sucesso!');
+        Bairro::create($request->all());
+        return redirect()->route('bairros.index')->with('message', 'O Bairro foi cadastrado com sucesso!');
     }
 
     /**
@@ -83,7 +60,8 @@ class BairroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bairro = Bairro::find($id);
+        return view('bairro.edit', ['bairro' => $bairro]);
     }
 
     /**
@@ -93,9 +71,11 @@ class BairroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BairroRequest $request, $id)
     {
-        //
+        $bairro = Bairro::find($id);
+        $bairro->update($request->all());
+        return redirect()->route('bairros.index')->with('message', 'O Bairro foi alterado com sucesso!');
     }
 
     /**
@@ -106,6 +86,7 @@ class BairroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bairro::find($id)->delete();
+        return redirect()->route('bairros.index')->with('message', 'O Bairro foi excluído com sucesso!');
     }
 }

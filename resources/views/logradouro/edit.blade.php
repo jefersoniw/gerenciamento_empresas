@@ -54,7 +54,7 @@
                     <option value="{{ $item->id }}">{{ $item->bai_nom_bairro }}</option>
                 @endforeach
             </select>
-            <a href="">Cadastrar Bairro +</a>
+            <a href="{{ route('bairros.index') }}">Cadastrar Bairro +</a>
 
             <br><br>
 

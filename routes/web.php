@@ -41,6 +41,10 @@ route::middleware('auth')->group(function () {
     route::resource('/logradouros', LogradouroController::class);
     route::get('/logradouro/{id}/delete', [LogradouroController::class, 'destroy'])->name('logradouro.delete');
     route::post('buscar/logradouro', [LogradouroController::class, 'buscar'])->name('logradouro.buscar');
+
+    //BAIRRO
+    route::resource('/bairros', BairroController::class);
+    route::get('/bairros/{id}/delete', [BairroController::class, 'destroy'])->name('bairros.delete');
 });
 
 route::group(['prefix' => 'enderecos', 'middleware' => 'auth'], function () {
