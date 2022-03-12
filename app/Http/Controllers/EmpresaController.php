@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmpresaRequest;
 use App\Models\Documento;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
         $empresa = new Empresa();
         $empresa->emp_nom_empresa = $request->emp_nom_empresa;
@@ -47,7 +48,7 @@ class EmpresaController extends Controller
             $empresa->emp_especial = 0;
         }
         $empresa->save();
-        return redirect()->route('endereco.create', $empresa->id)->with('message', 'A Empresa foi cadastrada com sucesso!');
+        return redirect()->route('empresas.show', $empresa->id)->with('message', 'A Empresa foi cadastrada com sucesso!');
     }
 
     /**
@@ -81,7 +82,7 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmpresaRequest $request, $id)
     {
         $empresa = Empresa::find($id);
         $empresa->emp_nom_empresa = $request->emp_nom_empresa;
