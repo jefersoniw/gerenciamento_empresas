@@ -49,7 +49,8 @@
             <button class="btn btn-dark" type="submit"><i class="fas fa-sign-in-alt"></i>[ SAIR ]</button>
         </form>
     </nav>
-
+    [ <a href="{{ route('logradouros.index') }}">Logradouros</a> | <a href="">Bairros</a> | <a href="">Tipos de
+        Documentos</a> ]
     <br>
     @yield('content')
 </body>

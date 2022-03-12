@@ -1,6 +1,6 @@
 @extends('templates.template')
 
-@section('title', 'Inicio - Empresas')
+@section('title', 'Endereço')
 
 @section('content')
     Onde Estou: <a href="{{ route('empresas.index') }}">Empresa </a> > Visualizar Empresa > <b>Endereços da Empresa</b>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LogradouroRequest;
 use App\Models\Bairro;
 use App\Models\Logradouro;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class LogradouroController extends Controller
      */
     public function index()
     {
-        //
+        $logradouros = Logradouro::paginate(20);
+        return view('logradouro.index', ['logradouros' => $logradouros]);
     }
 
     /**
@@ -25,18 +27,8 @@ class LogradouroController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    public function createFast($end_id_emp, Request $request)
-    {
-        $logradouro = Logradouro::all();
-        $bairro = Bairro::find($request->log_id_bai);
-        return view('logradouro.createfast', [
-            'logradouro' => $logradouro,
-            'end_id_emp' => $end_id_emp,
-            'bairro' => $bairro
-        ]);
+        $bairros = Bairro::all();
+        return view('logradouro.create', ['bairros' => $bairros]);
     }
 
     /**
@@ -45,23 +37,11 @@ class LogradouroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LogradouroController $request)
     {
-        //
-    }
-
-    public function storeFast(Request $request)
-    {
-        $end_id_emp = $request->end_id_emp;
         $logradouro = new Logradouro();
-        $logradouro->log_nom_logradouro = $request->log_nom_logradouro;
-        $logradouro->log_num_cep = $request->log_num_cep;
-        $logradouro->log_id_bai = $request->log_id_bai;
-        $logradouro->save();
-
-        return redirect()
-            ->route('enderecos.create', ['end_id_emp' => $end_id_emp])
-            ->with('message', 'O Logradouro foi cadastrado com sucesso!');
+        $logradouro->create($request->all());
+        return redirect()->route('logradouros.index')->with('message', 'Logradouro Cadastrado com sucesso!');
     }
 
     /**
@@ -83,7 +63,12 @@ class LogradouroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bairros = Bairro::all();
+        $logradouro = Logradouro::find($id);
+        return view('logradouro.edit', [
+            'logradouro' => $logradouro,
+            'bairros' => $bairros
+        ]);
     }
 
     /**
@@ -93,9 +78,11 @@ class LogradouroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LogradouroRequest $request, $id)
     {
-        //
+        $logradouro = Logradouro::find($id);
+        $logradouro->update($request->all());
+        return redirect()->route('logradouros.index')->with('message', 'O Logradouro foi alterado com sucesso!');
     }
 
     /**
@@ -106,6 +93,17 @@ class LogradouroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Logradouro::find($id)->delete();
+        return redirect()->route('logradouros.index')->with('message', 'Logradouro excluído com sucesso!');
+    }
+
+    public function buscar(Request $request)
+    {
+        $logradouros = Logradouro::where('log_nom_logradouro', 'LIKE', '%' . $request->buscar_log . '%')->paginate(20);
+        $filters = $request->except('_token');
+        return view('logradouro.index', [
+            'filters' => $filters,
+            'logradouros' => $logradouros
+        ]);
     }
 }

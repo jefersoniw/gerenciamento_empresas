@@ -66,7 +66,7 @@
                         {{ $item->bairro->bai_nom_bairro }}</option>
                 @endforeach
             </select>
-            <a href="">Cadastrar Logradouro +</a>
+            <a href="{{ route('logradouros.index') }}">Cadastrar Logradouro +</a>
 
             <br><br>
 

@@ -27,6 +27,7 @@ route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 route::middleware('auth')->group(function () {
+    //EMPRESAS
     route::resource('/empresas', EmpresaController::class);
     route::get('/delete/{id}/empresas', [EmpresaController::class, 'destroy'])->name('empresas.delete');
     route::post('/buscar/empresas', [EmpresaController::class, 'buscar'])->name('empresas.buscar');
@@ -35,6 +36,11 @@ route::middleware('auth')->group(function () {
     route::get('/addespecial/empresa/{id}', [EmpresaController::class, 'addEspecial'])->name('empresas.addespecial');
     route::get('/removeespecial/empresa/{id}', [EmpresaController::class, 'removeEspecial'])->name('empresas.removeespecial');
     route::get('/restore/{id}/empresa', [EmpresaController::class, 'restore'])->name('empresas.restore');
+
+    //LOGRADOURO
+    route::resource('/logradouros', LogradouroController::class);
+    route::get('/logradouro/{id}/delete', [LogradouroController::class, 'destroy'])->name('logradouro.delete');
+    route::post('buscar/logradouro', [LogradouroController::class, 'buscar'])->name('logradouro.buscar');
 });
 
 route::group(['prefix' => 'enderecos', 'middleware' => 'auth'], function () {
