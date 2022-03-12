@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\BairroController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\LogradouroController;
+use App\Models\Logradouro;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,8 +35,14 @@ route::middleware('auth')->group(function () {
     route::get('/addespecial/empresa/{id}', [EmpresaController::class, 'addEspecial'])->name('empresas.addespecial');
     route::get('/removeespecial/empresa/{id}', [EmpresaController::class, 'removeEspecial'])->name('empresas.removeespecial');
     route::get('/restore/{id}/empresa', [EmpresaController::class, 'restore'])->name('empresas.restore');
+});
 
-    route::get('/enderecos/{end_id_emp}/index', [EnderecoController::class, 'index'])->name('enderecos.index');
-    route::get('/enderecos/{end_id_emp}/create', [EnderecoController::class, 'create'])->name('enderecos.create');
-    route::post('/enderecos/store', [EnderecoController::class, 'store'])->name('enderecos.store');
+route::group(['prefix' => 'enderecos', 'middleware' => 'auth'], function () {
+    //ENDERECO
+    route::get('/{end_id_emp}/index', [EnderecoController::class, 'index'])->name('enderecos.index');
+    route::get('/{end_id_emp}/create', [EnderecoController::class, 'create'])->name('enderecos.create');
+    route::post('/store', [EnderecoController::class, 'store'])->name('enderecos.store');
+    route::get('/{id}/delete/{end_id_emp}', [EnderecoController::class, 'destroy'])->name('enderecos.delete');
+    route::get('/{id}/edit', [EnderecoController::class, 'edit'])->name('endereco.edit');
+    route::put('/{id}', [EnderecoController::class, 'update'])->name('endereco.update');
 });

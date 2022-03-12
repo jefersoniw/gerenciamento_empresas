@@ -25,57 +25,52 @@
             </div>
         @endif
 
-        <table class="table table-black table-striped text-center">
+        <table class="table table-black table-striped ">
+
+            @if (count($enderecos) == 0)
+                <div class="text-center">[ NENHUM ENDEREÇO CADASTRADO ]</div>
+            @endif
 
             @foreach ($enderecos as $item)
-                <div>
-                    <b>Empresa:</b> {{ $item->empresa->emp_nom_empresa }}
-                </div>
-                <br>
+                <tbody>
+                    <tr>
+                        <td><b>Empresa:</b> {{ $item->empresa->emp_nom_empresa }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Número:</b> {{ $item->end_num_numero }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Complemento:</b> {{ $item->end_nom_complemento }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Latitude:</b> {{ $item->end_num_lat }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Longitude:</b> {{ $item->end_num_long }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Logradouro:</b> {{ $item->logradouro->log_nom_logradouro }} -
+                            {{ $item->logradouro->bairro->bai_nom_bairro }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ações:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></b> <a href="{{ route('endereco.edit', $item->id) }}">
+                                <button class="btn btn-primary">Editar</button>
+                            </a>
+                            <a href="{{ route('enderecos.delete', ['id' => $item->id, 'end_id_emp' => $end_id_emp]) }}">
+                                <button class="btn btn-danger">Excluir</button>
+                            </a>
+                        </td>
+                    </tr>
 
-                <div>
-                    <b>Número:</b> {{ $item->end_num_numero }}
-                </div>
-                <br>
-
-                <div>
-                    <b>Complemento:</b> {{ $item->end_nom_complemento }}
-                </div>
-                <br>
-
-                <div>
-                    <b>Latitude:</b> {{ $item->end_num_lat }}
-                </div>
-                <br>
-
-                <div>
-                    <b>Longitude:</b> {{ $item->end_num_long }}
-                </div>
-                <br>
-
-                <div>
-                    <b>Logradouro:</b> {{ $item->logradouro->log_nom_logradouro }}
-                </div>
-                <br>
-
-                <div>
-                    <b>Ações:</b>
-                </div>
-                <br>
-
-                <a href="">
-                    <button class="btn btn-primary">Editar</button>
-                </a>
-                <a href="">
-                    <button class="btn btn-danger">Excluir</button>
-                </a>
+                </tbody>
             @endforeach
             {{-- foreach --}}
         </table>
         <br>
-
-        <hr>
-        <hr>
 
         {{ $enderecos->links() }}
 

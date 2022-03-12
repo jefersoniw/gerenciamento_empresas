@@ -17,7 +17,7 @@ class Endereco extends Model
         'end_num_numero',
         'end_nom_complemento',
         'end_num_lat',
-        'end_num_log',
+        'end_num_long',
         'end_id_log',
         'end_id_emp'
     ];

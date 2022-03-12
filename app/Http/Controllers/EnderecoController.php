@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EnderecoRequest;
 use App\Models\Bairro;
 use App\Models\Endereco;
 use App\Models\Logradouro;
@@ -28,11 +29,9 @@ class EnderecoController extends Controller
     public function create($end_id_emp)
     {
         $logradouro = Logradouro::all();
-        $bairro = Bairro::all();
         return view('endereco.create', [
             'end_id_emp' => $end_id_emp,
-            'logradouro' => $logradouro,
-            'bairro' => $bairro
+            'logradouro' => $logradouro
         ]);
     }
 
@@ -42,9 +41,13 @@ class EnderecoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EnderecoRequest $request)
     {
-        //
+        $endereco = new Endereco();
+        $endereco->create($request->all());
+        return redirect()
+            ->route('enderecos.index', $request->end_id_emp)
+            ->with('message', 'Endereço cadastrado com sucesso!');
     }
 
     /**
@@ -66,7 +69,12 @@ class EnderecoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $endereco = Endereco::find($id);
+        $logradouro = Logradouro::all();
+        return view('endereco.edit', [
+            'endereco' => $endereco,
+            'logradouro' => $logradouro
+        ]);
     }
 
     /**
@@ -76,9 +84,13 @@ class EnderecoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EnderecoRequest $request, $id)
     {
-        //
+        $endereco = Endereco::find($id);
+        $endereco->update($request->all());
+        return redirect()
+            ->route('enderecos.index', $request->end_id_emp)
+            ->with('message', 'Endereço alterado com sucesso!');
     }
 
     /**
@@ -87,8 +99,9 @@ class EnderecoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $end_id_emp)
     {
-        //
+        Endereco::find($id)->delete();
+        return redirect()->route('enderecos.index', $end_id_emp)->with('message', 'Endereço excluído com sucesso!');
     }
 }
