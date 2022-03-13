@@ -4,6 +4,7 @@ use App\Http\Controllers\BairroController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\ImagemDocumentoController;
 use App\Http\Controllers\LogradouroController;
 use App\Http\Controllers\TipoDocumentoController;
 use App\Models\Logradouro;
@@ -71,4 +72,14 @@ route::group(['prefix' => 'documentos', 'middleware' => 'auth'], function () {
     route::get('/{id}/delete/{doc_id_emp}', [DocumentoController::class, 'destroy'])->name('documentos.delete');
     route::get('/{id}/edit', [DocumentoController::class, 'edit'])->name('documentos.edit');
     route::put('/{id}', [DocumentoController::class, 'update'])->name('documentos.update');
+});
+
+route::group(['prefix' => 'imagens', 'middleware' => 'auth'], function () {
+    //IMAGENS
+    route::get('/{imd_id_doc}/index', [ImagemDocumentoController::class, 'index'])->name('imagemdocumento.index');
+    route::get('/{imd_id_doc}/create', [ImagemDocumentoController::class, 'create'])->name('imagemdocumento.create');
+    route::post('/store', [ImagemDocumentoController::class, 'store'])->name('imagemdocumento.store');
+    route::get('/{id}/delete/{imd_id_doc}', [ImagemDocumentoController::class, 'destroy'])->name('imagemdocumento.delete');
+    route::get('/{id}/edit', [ImagemDocumentoController::class, 'edit'])->name('imagemdocumento.edit');
+    route::put('/{id}', [ImagemDocumentoController::class, 'update'])->name('imagemdocumento.update');
 });

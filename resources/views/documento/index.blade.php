@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="">
+                            <a href="{{ route('imagemdocumento.index', $item->id) }}">
                                 <button class="btn btn-info">Ver Imagens</button>
                             </a>
                             <a href="{{ route('documentos.edit', $item->id) }}">
