@@ -44,6 +44,10 @@ $(document).ready(function () {
     $("#log_id_bai").select2();
 });
 
+$(document).ready(function () {
+    $("#doc_id_tdo").select2();
+});
+
 //
 function Mudarestado(el) {
     var display = document.getElementById(el).style.display;

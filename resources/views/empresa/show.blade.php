@@ -66,7 +66,7 @@
 
         <hr>
 
-        <a href="">
+        <a href="{{ route('documentos.index', $empresa->id) }}">
             <h4>[ VER DOCUMENTOS DA EMPRESA ]</h4>
         </a>
 

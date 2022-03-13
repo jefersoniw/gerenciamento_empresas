@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BairroController;
+use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\LogradouroController;
@@ -60,4 +61,14 @@ route::group(['prefix' => 'enderecos', 'middleware' => 'auth'], function () {
     route::get('/{id}/delete/{end_id_emp}', [EnderecoController::class, 'destroy'])->name('enderecos.delete');
     route::get('/{id}/edit', [EnderecoController::class, 'edit'])->name('endereco.edit');
     route::put('/{id}', [EnderecoController::class, 'update'])->name('endereco.update');
+});
+
+route::group(['prefix' => 'documentos', 'middleware' => 'auth'], function () {
+    //DOCUMENTOS
+    route::get('/{doc_id_emp}/index', [DocumentoController::class, 'index'])->name('documentos.index');
+    route::get('/{doc_id_emp}/create', [DocumentoController::class, 'create'])->name('documentos.create');
+    route::post('/store', [DocumentoController::class, 'store'])->name('documentos.store');
+    route::get('/{id}/delete/{doc_id_emp}', [DocumentoController::class, 'destroy'])->name('documentos.delete');
+    route::get('/{id}/edit', [DocumentoController::class, 'edit'])->name('documentos.edit');
+    route::put('/{id}', [DocumentoController::class, 'update'])->name('documentos.update');
 });
