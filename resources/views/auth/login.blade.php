@@ -27,7 +27,8 @@
             <img id="showPassword" src="{{ asset('assets/image/eye-icon.png') }}" alt="" width=40 height=25>
 
             <br><br>
-            <button class="btn btn-success btn-lg" type="submit"><i class="fas fa-sign-in-alt"></i>Entrar</button>
+            <button class="btn btn-success btn-lg" name="entrar" id="entrar" type="submit"><i
+                    class="fas fa-sign-in-alt"></i>Entrar</button>
             <br><br>
             <a href="{{ route('register') }}" id="forgot_pswd">
                 <button type="button" class="btn btn-warning btn-sm">Faça seu cadastro</button>

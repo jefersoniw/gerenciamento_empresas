@@ -37,7 +37,7 @@ class LogradouroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LogradouroController $request)
+    public function store(LogradouroRequest $request)
     {
         $logradouro = new Logradouro();
         $logradouro->create($request->all());
