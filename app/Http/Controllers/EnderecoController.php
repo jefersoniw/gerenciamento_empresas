@@ -43,8 +43,7 @@ class EnderecoController extends Controller
      */
     public function store(EnderecoRequest $request)
     {
-        $endereco = new Endereco();
-        $endereco->create($request->all());
+        Endereco::create($request->all());
         return redirect()
             ->route('enderecos.index', $request->end_id_emp)
             ->with('message', 'Endereço cadastrado com sucesso!');
@@ -102,6 +101,8 @@ class EnderecoController extends Controller
     public function destroy($id, $end_id_emp)
     {
         Endereco::find($id)->delete();
-        return redirect()->route('enderecos.index', $end_id_emp)->with('message', 'Endereço excluído com sucesso!');
+        return redirect()
+            ->route('enderecos.index', $end_id_emp)
+            ->with('message', 'Endereço excluído com sucesso!');
     }
 }

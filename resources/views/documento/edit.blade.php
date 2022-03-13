@@ -48,7 +48,7 @@
                     <option value="{{ $item->id }}">{{ $item->tdo_nom_tipo_documento }}</option>
                 @endforeach
             </select>
-            <a href="{{ route('tiposdocumentos.index') }}">Cadastrar Tipo de Documento +</a>
+            <a href="{{ route('tiposdocumentos.index') }}" target="_blank">Cadastrar Tipo de Documento +</a>
 
             <label for="doc_num_documento">Número do Documento: *</label>
             <input type="text" name="doc_num_documento" id="doc_num_documento" class="form-control" required autofocus=""

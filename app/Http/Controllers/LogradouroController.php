@@ -39,8 +39,7 @@ class LogradouroController extends Controller
      */
     public function store(LogradouroRequest $request)
     {
-        $logradouro = new Logradouro();
-        $logradouro->create($request->all());
+        Logradouro::create($request->all());
         return redirect()->route('logradouros.index')->with('message', 'Logradouro Cadastrado com sucesso!');
     }
 

@@ -45,9 +45,10 @@ class DocumentoController extends Controller
      */
     public function store(DocumentoRequest $request)
     {
-        $documento = new Documento();
-        $documento->create($request->all());
-        return redirect()->route('documentos.index', $request->doc_id_emp)->with('message', 'O Documento foi cadastrado com sucesso!');
+        Documento::create($request->all());
+        return redirect()
+            ->route('documentos.index', $request->doc_id_emp)
+            ->with('message', 'O Documento foi cadastrado com sucesso!');
     }
 
     /**

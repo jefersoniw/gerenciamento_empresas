@@ -13,8 +13,8 @@ class RegisterTest extends DuskTestCase
      *
      * @return void
      */
-
-    public function testIfInputsExists()
+    /** @test */
+    public function check_if_inputs_exists()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
@@ -22,18 +22,8 @@ class RegisterTest extends DuskTestCase
         });
     }
 
-    public function testIfLoginIsActive()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                ->type('email', 'jeferson@email.com')
-                ->type('password', '12345678')
-                ->press('Entrar')
-                ->assertPathIs('/empresas');
-        });
-    }
-
-    public function testRegisterUser()
+    /** @test */
+    public function check_if_register_user_is_correct()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
@@ -42,6 +32,19 @@ class RegisterTest extends DuskTestCase
                 ->type('password', '12345678')
                 ->type('password_confirmation', '12345678')
                 ->press('Cadastrar')
+                ->assertPathIs('/empresas')
+                ->assertSee('Gerenciamento de Empresas');
+        });
+    }
+
+    /** @test */
+    public function check_if_login_is_active()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+                ->type('email', 'teste@email.com')
+                ->type('password', '12345678')
+                ->press('Entrar')
                 ->assertPathIs('/empresas');
         });
     }
